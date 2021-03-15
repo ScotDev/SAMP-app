@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import ROUTES from "Constants/routes";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import './welcome.css'
 import { MdSystemUpdateAlt } from 'react-icons/md'
 import { AiOutlinePrinter } from 'react-icons/ai'
 
-import PrintList from '../../components/PrintList'
-  ;
+import PrintList from '../../components/PrintList';
+
 
 const Welcome = () => {
   const [viewNew, setViewNew] = useState(true)
   const [viewPrinted, setViewPrinted] = useState(false)
 
-
+  const print = useSelector((state) => state.print)
   const toggleView = () => {
     setViewNew(!viewNew)
     setViewPrinted(!viewPrinted)
