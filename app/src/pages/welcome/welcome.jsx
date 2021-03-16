@@ -8,15 +8,12 @@ import { AiOutlinePrinter } from 'react-icons/ai'
 
 import PrintList from '../../components/PrintList';
 
-
 const Welcome = () => {
   const [viewNew, setViewNew] = useState(true)
-  const [viewPrinted, setViewPrinted] = useState(false)
 
   const print = useSelector((state) => state.print)
   const toggleView = () => {
     setViewNew(!viewNew)
-    setViewPrinted(!viewPrinted)
   }
 
   return (<>
@@ -30,10 +27,10 @@ const Welcome = () => {
 
       <div className="toggle-group">
         <button className={viewNew && "active"} onClick={toggleView}>New</button>
-        <button className={viewPrinted && "active"} onClick={toggleView}>Printed</button>
+        <button className={!viewNew && "active"} onClick={toggleView}>Printed</button>
       </div>
 
-      <PrintList />
+      <PrintList viewNew={viewNew} />
 
       {/* Iterate out list items */}
 

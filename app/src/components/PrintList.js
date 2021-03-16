@@ -5,20 +5,28 @@ import PrintItem from './PrintItem';
 import './Print.css';
 
 
-export default function PrintList() {
+export default function PrintList({ viewNew }) {
     const print = useSelector((state) => state.print)
-    console.log("Print state :", print)
 
-
-    const mappedItems = print.map((item, index) => {
-        return (
-            <PrintItem key={index} data={item} />
-        )
+    const newItems = print.map((item, index) => {
+        if (!item.printed) {
+            return (
+                <PrintItem key={index} data={item} />
+            )
+        }
+    })
+    const printedItems = print.map((item, index) => {
+        if (item.printed) {
+            return (
+                <PrintItem key={index} data={item} />
+            )
+        }
     })
 
     return (
         <div className="print-list">
-            {mappedItems}
+            {viewNew && newItems}
+            {!viewNew && printedItems}
             {/* <PrintItem />
             <PrintItem />
             <PrintItem />

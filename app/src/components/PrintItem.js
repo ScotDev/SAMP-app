@@ -28,7 +28,8 @@ export default function PrintItem(props) {
             {data.selected ? <BsCheckCircle id="checked" /> : <BsCircle />}
             <p>{data.SO}</p>
             <p>{data.pages} page(s)</p>
-            <p>Added: 46 mins ago</p>
+            {/* Below is just dev placeholder */}
+            <p>{data.printed ? "Printed" : "Added"} : 46 mins ago</p>
         </div>
     )
 }

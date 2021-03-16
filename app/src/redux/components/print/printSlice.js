@@ -10,10 +10,17 @@ const printSlice = createSlice({
         selected: false
     },
     {
-        id: 3,
+        id: 2,
         SO: "SO123593",
-        pages: 3,
+        pages: 1,
         printed: false,
+        selected: false
+    },
+    {
+        id: 3,
+        SO: "SO123298",
+        pages: 2,
+        printed: true,
         selected: false
     }
     ],
@@ -26,14 +33,14 @@ const printSlice = createSlice({
                 printed: action.payload.printed
             })
         },
-        update(state, action) {
-            state({
-                id: action.payload.id,
-                SO: action.payload.SO,
-                pages: action.payload.pages,
-                printed: action.payload.printed
-            })
-        },
+        // update(state, action) {
+        //     state({
+        //         id: action.payload.id,
+        //         SO: action.payload.SO,
+        //         pages: action.payload.pages,
+        //         printed: action.payload.printed
+        //     })
+        // },
         select(state, action) {
             const existingItem = state.find(item => item.id === action.payload.id)
             if (existingItem) {
