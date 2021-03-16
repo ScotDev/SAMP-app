@@ -8,8 +8,12 @@ import './Print.css';
 export default function PrintList({ viewNew }) {
     const print = useSelector((state) => state.print)
 
+    let newItemCount = 0;
+
     const newItems = print.map((item, index) => {
         if (!item.printed) {
+            newItemCount++
+            console.log(newItemCount)
             return (
                 <PrintItem key={index} data={item} />
             )
@@ -23,10 +27,19 @@ export default function PrintList({ viewNew }) {
         }
     })
 
+    // const printedCountFunc = print.map((item, index) => {
+    //     if (!item.printed) {
+    //         newItemCount++
+    //         console.log(newItemCount)
+    //     }
+    // });
+
     return (
         <div className="print-list">
+            {newItemCount < 1 && (<h4>Nothing new to print</h4>)}
             {viewNew && newItems}
             {!viewNew && printedItems}
+
             {/* <PrintItem />
             <PrintItem />
             <PrintItem />

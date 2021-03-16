@@ -13,6 +13,10 @@
     height: 100%;
     width: 60%;
 }
+h4 {
+    text-align: center;
+    font-size: 1.1rem;
+}
 
 .print-item {
     display: flex;

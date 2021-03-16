@@ -1,6 +1,7 @@
 :root {
     --theme-btn-radius: 50px;
     --theme-primary-color: #FF00FF;
+    /* --theme-primary-color: #9c11ff; */
     --theme-secondary-color: #A9CEC2;
     --theme-primary-bg: #242424;
     --theme-text: #E5E5E5;
@@ -39,6 +40,10 @@ header {
     font-size: 1.75rem;
     font-weight: 500;
     background-color: var(--theme-primary-bg);
+}
+.btn-group button:disabled {
+    cursor: progress;
+    filter: brightness(0.5);
 }
 .btn-group button svg {
     vertical-align: text-bottom;
@@ -84,6 +89,9 @@ header {
     filter: brightness(0.6);
     border-bottom: 3px solid transparent;
     font-size: 1.1rem;
+}
+.toggle-group button:disabled {
+    cursor: progress;
 }
 
 .toggle-group button.active {

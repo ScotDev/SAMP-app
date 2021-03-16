@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { select } from '../redux/components/print/printSlice';
+import { select } from '../../redux/components/print/printSlice';
 import { BsCircle, BsCheckCircle } from 'react-icons/bs';
 import './Print.css';
 
@@ -20,17 +20,19 @@ export default function PrintItem(props) {
     const selectedClass = "print-item selected";
     const initialClass = "print-item"
 
-    console.log("Print item :", props)
+    return (<>
 
+        <div className={data.selected ? selectedClass : initialClass} onClick={() => {
+            dispatch(select({ id: data.id })
+            )
+        }}>
 
-    return (
-        <div className={data.selected ? selectedClass : initialClass} onClick={() => { dispatch(select({ id: data.id })) }}>
             {data.selected ? <BsCheckCircle id="checked" /> : <BsCircle />}
             <p>{data.SO}</p>
             <p>{data.pages} page(s)</p>
             {/* Below is just dev placeholder */}
             <p>{data.printed ? "Printed" : "Added"} : 46 mins ago</p>
         </div>
-    )
+    </>)
 }
 

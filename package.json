@@ -101,6 +101,7 @@
     "@loadable/component": "^5.14.1",
     "@reduxjs/toolkit": "^1.5.0",
     "connected-react-router": "^6.8.0",
+    "dayjs": "^1.10.4",
     "easy-redux-undo": "^1.0.3",
     "electron-devtools-installer": "^3.1.1",
     "i18next": "^19.8.7",

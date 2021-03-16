@@ -5,12 +5,14 @@ import homeReducer from "../components/home/homeSlice";
 import counterReducer from "../components/counter/counterSlice";
 import complexReducer from "../components/complex/complexSlice";
 import printReducer from "../components/print/printSlice";
+import utilsReducer from "../components/utils/utilsSlice";
 
 const rootReducer = (history) =>
   combineReducers({
     router: connectRouter(history),
     home: homeReducer,
     print: printReducer,
+    utils: utilsReducer,
     undoable: undoable(
       combineReducers({
         counter: counterReducer,
