@@ -81,10 +81,10 @@ const Welcome = () => {
       </div>
       {utils.showPrintModal && <Modal />}
 
-      {utils.isUpdating && <Loading />}
+
       {showPrintError && (<p>Please select at least one item to print</p>)}
       {utils.isPrinting && (<p>Printing {count} item(s)...</p>)}
-      {!utils.isUpdating && <PrintList viewNew={viewNew} />}
+      <PrintList viewNew={viewNew} />
 
     </div>
   </>)

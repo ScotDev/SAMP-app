@@ -88,14 +88,21 @@ header {
     cursor: pointer;
     filter: brightness(0.6);
     border-bottom: 3px solid transparent;
+    color: var(--theme-text);
     font-size: 1.1rem;
+    margin-bottom: -2px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 .toggle-group button:disabled {
     cursor: progress;
 }
 
 .toggle-group button.active {
-    border-bottom: 3px solid var(--theme-text);
+    border-bottom: 3px solid var(--theme-secondary-color);
+    color: var(--theme-secondary-color);
     filter: brightness(1);
     font-weight: 500;
 }
