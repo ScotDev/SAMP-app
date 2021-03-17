@@ -34,6 +34,12 @@ export default function PrintList({ viewNew }) {
 
     return (
         <div className="print-list">
+            <div className="list-headings">
+                <p>Selected</p>
+                <p>Order no.</p>
+                <p>Pages</p>
+                <p>Last updated</p>
+            </div>
             <div className="loading-container">
                 {utils.isUpdating && <Loading />}
             </div>

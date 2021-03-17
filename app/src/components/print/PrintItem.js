@@ -3,19 +3,22 @@ import { useSelector, useDispatch } from "react-redux";
 import { select } from '../../redux/components/print/printSlice';
 import { BsCircle, BsCheckCircle } from 'react-icons/bs';
 import './Print.css';
+import dayjs from 'dayjs';
 
 
+let relativeTime = require('dayjs/plugin/relativeTime')
+dayjs.extend(relativeTime)
 
 export default function PrintItem(props) {
     // const print = useSelector((state) => state.print)
     const dispatch = useDispatch();
-    const [selected, setSelected] = useState(false)
+    // const [selected, setSelected] = useState(false)
     const data = props.data;
 
-    const toggleSelected = () => {
-        setSelected(!selected)
+    // const toggleSelected = () => {
+    //     setSelected(!selected)
 
-    }
+    // }
 
     const selectedClass = "print-item selected";
     const initialClass = "print-item"
@@ -31,7 +34,7 @@ export default function PrintItem(props) {
             <p>{data.SO}</p>
             <p>{data.pages} page(s)</p>
             {/* Below is just dev placeholder */}
-            <p>{data.printed ? "Printed" : "Added"} : 46 mins ago</p>
+            <p>{data.printed ? "Printed: " : "Added: "}  {data.printed && dayjs().to(data.printedTime)} {!data.printedTime && data.addedTime && dayjs().to(data.addedTime)}</p>
         </div>
     </>)
 }

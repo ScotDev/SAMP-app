@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ROUTES from "Constants/routes";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toggle, update } from '../../redux/components/utils/utilsSlice';
+import { add } from '../../redux/components/print/printSlice';
 import './welcome.css'
 import { MdSystemUpdateAlt } from 'react-icons/md'
 import { AiOutlinePrinter } from 'react-icons/ai'
@@ -13,13 +14,63 @@ import PrintList from '../../components/print/PrintList';
 import Modal from '../../components/modal/Modal';
 import Loading from '../../components/loading/Loading';
 
+
+const defaultState = [{
+  id: 1,
+  SO: "SO123456",
+  pages: 3,
+  printed: false,
+  selected: false,
+  printedTime: null,
+  addedTime: null
+},
+{
+  id: 2,
+  SO: "SO123593",
+  pages: 1,
+  printed: false,
+  selected: false,
+  printedTime: null,
+  addedTime: null
+},
+{
+  id: 3,
+  SO: "SO123298",
+  pages: 2,
+  printed: false,
+  selected: false,
+  printedTime: null,
+  addedTime: null
+},
+{
+  id: 4,
+  SO: "SO123223",
+  pages: 5,
+  printed: false,
+  selected: false,
+  printedTime: null,
+  addedTime: null
+}]
+
 const Welcome = () => {
   const [viewNew, setViewNew] = useState(true)
   const [showPrintError, setShowPrintError] = useState(false)
-
   const dispatch = useDispatch();
   const print = useSelector((state) => state.print)
   const utils = useSelector((state) => state.utils)
+
+  // useEffect(() => {
+  //   const defaults = defaultState.map((item, index) => {
+  //     dispatch(add({ SO: item.SO, pages: item.pages }))
+  //   })
+
+  //   // return () => {
+  //   //   cleanup
+  //   // }
+  //   // defaults()
+  // }, [])
+
+
 
   console.log("Utils here:", utils)
 
@@ -33,6 +84,11 @@ const Welcome = () => {
   }
 
   const updateData = () => {
+
+    const defaults = defaultState.map((item, index) => {
+      console.log(item)
+      dispatch(add({ SO: item.SO, pages: item.pages }))
+    })
     dispatch(update())
 
     setTimeout(() => {
