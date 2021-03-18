@@ -11,7 +11,9 @@ const printSlice = createSlice({
                 state.push({
                     id: state.length + 1,
                     SO: action.payload.SO,
+                    customer: action.payload.customer,
                     pages: action.payload.pages,
+                    amount: action.payload.amount,
                     printed: false,
                     selected: false,
                     printedTime: null,

@@ -1,65 +1,64 @@
 :root {
-    --theme-btn-radius: 50px;
-    --theme-primary-color: #FF00FF;
-    /* --theme-primary-color: #9c11ff; */
-    --theme-secondary-color: #A9CEC2;
-    --theme-primary-bg: #242424;
-    --theme-text: #E5E5E5;
-    --modal-radius: 10px;
+  --theme-btn-radius: 50px;
+  --theme-primary-color: #ff00ff;
+  /* --theme-primary-color: #9c11ff; */
+  --theme-secondary-color: #a9cec2;
+  --theme-primary-bg: #242424;
+  --theme-text: #e5e5e5;
+  --modal-radius: 10px;
 }
 
 .modal {
-    display: block;
-    /* border: 2px solid red; */
-    background-color: var(--theme-text);
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: var(--modal-radius);
-    height: 175px;
-    width: 375px;
+  display: block;
+  /* border: 2px solid red; */
+  background-color: var(--theme-text);
+  position: fixed;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: var(--modal-radius);
+  height: 175px;
+  width: 375px;
 }
 
-
-.modal-content{
-    /* display: flex;
+.modal-content {
+  /* display: flex;
     flex-direction: column;
     justify-content: space-around; */
-    text-align: center;
-    /* align-items: center; */
-    padding: 1rem;
+  text-align: center;
+  /* align-items: center; */
+  padding: 1rem;
 }
 .message {
-    color: var(--theme-primary-bg);
-    font-size: 1.4rem;
+  color: var(--theme-primary-bg);
+  font-size: 1.4rem;
 }
 
 .modal-btn-group {
-    display: flex;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 25%;
-    text-align: center;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 25%;
+  text-align: center;
 }
 
 .modal-btn-group button {
-    all:unset;
-    width: 50%;
-    color: var(--theme-text);
-    font-size: 1.5rem;
-    font-family: inherit;
-    cursor: pointer;
+  all: unset;
+  width: 50%;
+  color: var(--theme-text);
+  font-size: 1.5rem;
+  font-family: inherit;
+  cursor: pointer;
 }
 
 button#confirm {
-    background-color: var(--theme-primary-color);
-    border-bottom-left-radius: var(--modal-radius);
-
+  background-color: var(--theme-primary-color);
+  border-bottom-left-radius: var(--modal-radius);
 }
 
 button#cancel {
-    background-color: rgba(0,0,0,0.6);
-    border-bottom-right-radius: var(--modal-radius);
+  background-color: rgba(0, 0, 0, 0.6);
+  border-bottom-right-radius: var(--modal-radius);
 }

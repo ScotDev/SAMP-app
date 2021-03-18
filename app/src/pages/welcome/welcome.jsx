@@ -14,6 +14,7 @@ import PrintList from '../../components/print/PrintList';
 import Modal from '../../components/modal/Modal';
 import Loading from '../../components/loading/Loading';
 
+// const endpointURL = "https://605340b845e4b300172912d8.mockapi.io/api/v1/documents"
 
 const defaultState = [{
   id: 1,
@@ -59,20 +60,28 @@ const Welcome = () => {
   const print = useSelector((state) => state.print)
   const utils = useSelector((state) => state.utils)
 
-  // useEffect(() => {
-  //   const defaults = defaultState.map((item, index) => {
-  //     dispatch(add({ SO: item.SO, pages: item.pages }))
-  //   })
+  const [data, setData] = useState(null);
+  const [fetchError, setFetchError] = useState(false)
 
-  //   // return () => {
-  //   //   cleanup
-  //   // }
-  //   // defaults()
-  // }, [])
+  const fetchData = async () => {
+    dispatch(update())
 
+    try {
+      const res = await fetch("https://605340b845e4b300172912d8.mockapi.io/api/v1/documents");
+      const formattedRes = await res.json();
+      console.log(formattedRes)
+      setData(formattedRes)
+      dispatch(update())
+    } catch (error) {
+      setFetchError(true);
+      dispatch(update())
+      console.log("Error loading data from API: ", error)
+    }
+  };
 
-
-  console.log("Utils here:", utils)
+  useEffect(() => {
+    fetchData();
+  }, [])
 
   // Lastupdated might need to be updated every minute?
   let relativeTime = require('dayjs/plugin/relativeTime')
@@ -83,24 +92,19 @@ const Welcome = () => {
     setViewNew(!viewNew)
   }
 
-  const updateData = () => {
-
-    const defaults = defaultState.map((item, index) => {
+  if (data) {
+    data.map((item, index) => {
       console.log(item)
-      dispatch(add({ SO: item.SO, pages: item.pages }))
+      dispatch(add({ SO: `SO${item.order_number}00`, customer: item.customer, amount: item.amount, pages: item.pages }))
     })
-    dispatch(update())
-
-    setTimeout(() => {
-      dispatch(update())
-    }, 2000);
-
   }
+
   // This should be held in redux
   let count = 0;
 
   const itemCount = print.map((item, index) => {
     if (item.selected) {
+
       count++
     }
   });
@@ -125,7 +129,7 @@ const Welcome = () => {
 
       <div className="btn-group">
         <button id="update" disabled={utils.isUpdating || utils.isPrinting}
-          onClick={updateData}
+          onClick={fetchData}
         >Update <MdSystemUpdateAlt /></button>
         <button id="print" disabled={utils.isUpdating || utils.isPrinting} onClick={handlePrint}>Print <AiOutlinePrinter /></button>
       </div>
@@ -135,9 +139,8 @@ const Welcome = () => {
         <button className={viewNew && "active"} disabled={utils.isUpdating || utils.isPrinting} onClick={toggleView}>New</button>
         <button className={!viewNew && "active"} disabled={utils.isUpdating || utils.isPrinting} onClick={toggleView}>Printed</button>
       </div>
+
       {utils.showPrintModal && <Modal />}
-
-
       {showPrintError && (<p>Please select at least one item to print</p>)}
       {utils.isPrinting && (<p>Printing {count} item(s)...</p>)}
       <PrintList viewNew={viewNew} />

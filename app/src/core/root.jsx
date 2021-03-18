@@ -13,7 +13,7 @@ class Root extends React.Component {
       <React.Fragment>
         <Provider store={store}>
           <ConnectedRouter history={history}>
-            <Nav history={history}></Nav>
+            {/* <Nav history={history}></Nav> */}
             <Routes></Routes>
           </ConnectedRouter>
         </Provider>
