@@ -55,6 +55,7 @@ async function createWindow() {
   win = new BrowserWindow({
     width: 1280,
     height: 800,
+    fullscreenable: false,
     title: "Application is currently initializing...",
     webPreferences: {
       devTools: isDev,

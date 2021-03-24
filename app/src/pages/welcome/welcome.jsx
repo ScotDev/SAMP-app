@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ROUTES from "Constants/routes";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { toggle, update } from '../../redux/components/utils/utilsSlice';
+import { toggle, update, toggleNotification } from '../../redux/components/utils/utilsSlice';
 import { add } from '../../redux/components/print/printSlice';
 import './welcome.css'
 import { MdSystemUpdateAlt } from 'react-icons/md'
@@ -13,8 +13,8 @@ import dayjs from 'dayjs';
 import PrintList from '../../components/print/PrintList';
 import Modal from '../../components/modal/Modal';
 import Loading from '../../components/loading/Loading';
+import Notification from '../../components/notifications/Notification';
 
-// const endpointURL = "https://605340b845e4b300172912d8.mockapi.io/api/v1/documents"
 
 const defaultState = [{
   id: 1,
@@ -54,14 +54,20 @@ const defaultState = [{
 }]
 
 const Welcome = () => {
-  const [viewNew, setViewNew] = useState(true)
-  const [showPrintError, setShowPrintError] = useState(false)
+
   const dispatch = useDispatch();
   const print = useSelector((state) => state.print)
   const utils = useSelector((state) => state.utils)
 
+
+  const [viewNew, setViewNew] = useState(true)
+  const [showPrintError, setShowPrintError] = useState(false)
+
+
   const [data, setData] = useState(null);
   const [fetchError, setFetchError] = useState(false)
+
+
 
   const fetchData = async () => {
     dispatch(update())
@@ -72,8 +78,10 @@ const Welcome = () => {
       console.log(formattedRes)
       setData(formattedRes)
       dispatch(update())
+      dispatch(toggleNotification({ type: "success", msg: "Fetch successful", details: "New items received" }))
     } catch (error) {
       setFetchError(true);
+      dispatch(toggleNotification({ type: "error", msg: "Frror fetching items", details: "New items could not be retrieved" }))
       dispatch(update())
       console.log("Error loading data from API: ", error)
     }
@@ -95,7 +103,7 @@ const Welcome = () => {
   if (data) {
     data.map((item, index) => {
       console.log(item)
-      dispatch(add({ SO: `SO${item.order_number}00`, customer: item.customer, amount: item.amount, pages: item.pages }))
+      dispatch(add({ SO: item.order_number, customer: item.customer, amount: item.amount, pages: item.pages }))
     })
   }
 
@@ -104,7 +112,6 @@ const Welcome = () => {
 
   const itemCount = print.map((item, index) => {
     if (item.selected) {
-
       count++
     }
   });
@@ -114,18 +121,25 @@ const Welcome = () => {
     if (count > 0) {
       dispatch(toggle({ showPrintModal: true }))
     } else {
-      setShowPrintError(true)
-      setTimeout(() => {
-        setShowPrintError(false)
-      }, 3000);
+      // setShowPrintError(true)
+      dispatch(toggleNotification({ type: "error", msg: "Print error", details: "Please select at least one item to print" }))
+      // setTimeout(() => {
+      //   // setShowPrintError(false)
+      //   dispatch(toggleNotification({ type: null, msg: null, details: null }))
+      // }, 3000);
     }
 
+  }
+
+  const toggleNotificationFunc = () => {
+    dispatch(toggleNotification())
   }
 
 
   return (<>
     <div className="page">
       <header>SAMP</header>
+      <button onClick={toggleNotificationFunc}>Toggle notification</button>
 
       <div className="btn-group">
         <button id="update" disabled={utils.isUpdating || utils.isPrinting}
@@ -144,8 +158,9 @@ const Welcome = () => {
       {showPrintError && (<p>Please select at least one item to print</p>)}
       {utils.isPrinting && (<p>Printing {count} item(s)...</p>)}
       <PrintList viewNew={viewNew} />
-
+      {utils.showNotification && <Notification />}
     </div>
+
   </>)
 }
 

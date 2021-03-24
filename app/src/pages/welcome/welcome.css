@@ -16,6 +16,7 @@
   /* width: 100%; */
   color: var(--theme-text);
   /* overflow: hidden; */
+  position: relative;
 }
 
 header {

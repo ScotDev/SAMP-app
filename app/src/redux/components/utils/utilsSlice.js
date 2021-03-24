@@ -6,7 +6,11 @@ const utilsSlice = createSlice({
         isPrinting: false,
         isUpdating: false,
         showPrintModal: false,
-        lastUpdated: Date.now()
+        lastUpdated: Date.now(),
+        showNotification: false,
+        notificationType: "default",
+        notificationMsg: "hello",
+        notificationMsgDetails: ""
     }
     ,
     reducers: {
@@ -17,10 +21,16 @@ const utilsSlice = createSlice({
         update(state) {
             state.lastUpdated = Date.now(),
                 state.isUpdating = !state.isUpdating
+        },
+        toggleNotification(state, action) {
+            state.showNotification = !state.showNotification,
+                state.notificationType = action.payload.type,
+                state.notificationMsg = action.payload.msg,
+                state.notificationMsgDetails = action.payload.details
         }
     }
 })
 
-export const { toggle, update } = utilsSlice.actions;
+export const { toggle, update, toggleNotification } = utilsSlice.actions;
 
 export default utilsSlice.reducer

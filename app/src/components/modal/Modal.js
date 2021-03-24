@@ -19,11 +19,22 @@ export default function Modal() {
         }
     });
 
+    const updateServer = async (data) => {
+        console.log("Data :", data)
+        const res = await fetch(`https://605340b845e4b300172912d8.mockapi.io/api/v1/documents/${data.id}`, {
+            method: "PUT",
+            data: data
+        })
+
+        console.log(res.ok)
+    }
+
     const updateItemStatus = () => {
         print.map((item, index) => {
             if (item.selected) {
                 dispatch(update({ id: item.id }))
                 dispatch(select({ id: item.id }))
+                updateServer({ id: item.id, printed: true })
             }
         })
     }

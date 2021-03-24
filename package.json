@@ -20,7 +20,7 @@
     "dist-all": "npm run prod-build && electron-builder --mac --linux --windows"
   },
   "build": {
-    "productName": "YourProductName",
+    "productName": "SAMP",
     "appId": "com.yourcompany|electron.yourproductname",
     "directories": {
       "buildResources": "resources"
@@ -45,7 +45,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/reZach/secure-electron-template.git"
+    "url": "git+https://github.com/ScotDev/SAM-electron.git"
   },
   "keywords": [
     "electron",
