@@ -139,7 +139,6 @@ const Welcome = () => {
   return (<>
     <div className="page">
       <header>SAMP</header>
-      <button onClick={toggleNotificationFunc}>Toggle notification</button>
 
       <div className="btn-group">
         <button id="update" disabled={utils.isUpdating || utils.isPrinting}

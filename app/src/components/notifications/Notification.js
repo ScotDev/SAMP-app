@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './notification.css'
 import { BiErrorCircle, BiCheckCircle, BiBoltCircle } from 'react-icons/bi';
 
@@ -14,26 +14,34 @@ export default function Notification() {
     const message = utils.notificationMsg || "No message provided";
     const details = utils.notificationMsgDetails || "No details provided";
 
+
     let icon;
 
-    if (type === "error") {
+    if (utils.notificationType === "error") {
         icon = <BiErrorCircle />
-    } else if (type === "success") {
+    } else if (utils.notificationType === "success") {
         icon = <BiCheckCircle />
+    } else {
+        icon = null
     }
 
     // Buggy, maybe seperate into own reducer
     // Clear self after 3 seconds
-    setTimeout(() => {
-        dispatch(toggleNotification({ type: null, msg: null, details: null }))
-    }, 3000);
+
+
+    useEffect(() => {
+        setTimeout(() => {
+            dispatch(toggleNotification({ type: null, msg: null, details: null }))
+        }, 3000);
+
+    }, [])
 
     if (utils.notificationType === null) {
         return null
     }
 
     return (
-        <div className={`notification notification--${type}`}>
+        <div className={`notification notification--${utils.notificationType}`}>
             <div className="notification__firstcolumn ">
                 <i className="notification__icon">{icon}</i>
             </div>

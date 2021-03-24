@@ -2,7 +2,7 @@
 import React from 'react';
 import './modal.css';
 import { useSelector, useDispatch } from "react-redux";
-import { toggle } from '../../redux/components/utils/utilsSlice';
+import { toggle, toggleNotification } from '../../redux/components/utils/utilsSlice';
 import { select, update } from '../../redux/components/print/printSlice';
 
 export default function Modal() {
@@ -35,6 +35,7 @@ export default function Modal() {
                 dispatch(update({ id: item.id }))
                 dispatch(select({ id: item.id }))
                 updateServer({ id: item.id, printed: true })
+                dispatch(toggleNotification({ type: "success", msg: "Print success", details: `${selectedCount} item(s) printed successfully` }))
             }
         })
     }
@@ -44,6 +45,7 @@ export default function Modal() {
         setTimeout(() => {
             dispatch(toggle({ isPrinting: false }))
             updateItemStatus()
+
         }, 2000);
 
     }
