@@ -21,7 +21,7 @@ import { toggleNotification } from '../../redux/components/utils/utilsSlice';
 // Split ui component into dumb component that just takes props,
 // Functional stuff stays here
 
-
+// https://dev.to/tibetegya/how-to-create-a-notification-component-with-redux-toolkit-and-styled-componets-knp
 
 export default function Notification() {
     // const [showSelf, setShowSelf] = useState(false)
