@@ -87,8 +87,12 @@ const Welcome = () => {
     }
   };
 
+  const alertOnlineStatus = () => { window.alert(navigator.onLine ? 'online' : 'offline') }
+
   useEffect(() => {
     fetchData();
+    window.addEventListener('online', alertOnlineStatus)
+    // alertOnlineStatus()
   }, [])
 
   // Lastupdated might need to be updated every minute?
@@ -158,6 +162,7 @@ const Welcome = () => {
       {utils.isPrinting && (<p>Printing {count} item(s)...</p>)}
       <PrintList viewNew={viewNew} />
       {utils.showNotification && <Notification />}
+      {/* <Notification /> */}
     </div>
 
   </>)
