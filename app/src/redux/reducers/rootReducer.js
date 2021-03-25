@@ -6,6 +6,7 @@ import counterReducer from "../components/counter/counterSlice";
 import complexReducer from "../components/complex/complexSlice";
 import printReducer from "../components/print/printSlice";
 import utilsReducer from "../components/utils/utilsSlice";
+import notificationsReducer from "../components/notifications/notificationsSlice";
 
 const rootReducer = (history) =>
   combineReducers({
@@ -13,6 +14,7 @@ const rootReducer = (history) =>
     home: homeReducer,
     print: printReducer,
     utils: utilsReducer,
+    notifications: notificationsReducer,
     undoable: undoable(
       combineReducers({
         counter: counterReducer,
