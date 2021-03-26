@@ -63,7 +63,7 @@ const Welcome = () => {
 
 
   const [viewNew, setViewNew] = useState(true)
-  const [showPrintError, setShowPrintError] = useState(false)
+  // const [showPrintError, setShowPrintError] = useState(false)
 
 
   const [data, setData] = useState(null);

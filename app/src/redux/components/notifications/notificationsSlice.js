@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const notificationsSlice = createSlice({
     name: "notifications",
-    initialState: [{ id: 0, type: "default", msg: "Default title", details: "Default details" }],
+    initialState: [{ id: 1, type: "default", msg: "Default title", details: "Default details" }],
     reducers: {
         create(state, action) {
             state.push({
@@ -13,11 +13,8 @@ const notificationsSlice = createSlice({
             });
         },
         remove(state, action) {
-            state.pop()
-            // const existingItem = state.find(item => item.id === action.payload.id)
-            // if (existingItem) {
-            //     existingItem.remove
-            // }
+            // state.pop()
+            return state.filter(item => item.id !== action.payload.id)
         },
     }
 })

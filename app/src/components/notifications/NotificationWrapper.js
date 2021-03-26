@@ -12,21 +12,21 @@ export default function NotificationWrapper() {
     const notifications = useSelector((state) => state.notifications)
     // const notifications = notificationsState.notifications;
     // const [content, setContent] = useState({ type: null, msg: null, details: null });
-    const [showSelf, setShowSelf] = useState(false);
+    // const [showSelf, setShowSelf] = useState(false);
     console.log(notifications)
 
 
 
-    useEffect(() => {
-        if (notifications.length > 0) {
-            // setContent(notifications[notifications.length - 1]);
-            setShowSelf(true);
-            setTimeout(() => {
-                setShowSelf(false);
-                dispatch(remove())
-            }, 5000);
-        }
-    }, [notifications])
+    // useEffect(() => {
+    //     if (notifications.length > 0) {
+    //         // setContent(notifications[notifications.length - 1]);
+    //         setShowSelf(true);
+    //         // setTimeout(() => {
+    //         //     setShowSelf(false);
+    //         //     dispatch(remove())
+    //         // }, 5000);
+    //     }
+    // }, [notifications])
 
     let items;
 
