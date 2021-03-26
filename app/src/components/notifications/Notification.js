@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { remove } from '../../redux/components/notifications/notificationsSlice';
 
 export default function Notification(props) {
-    const { id, type, msg, details } = props.data;
+    const { type, msg, details } = props.data;
     const dispatch = useDispatch();
 
     let icon;
@@ -30,7 +30,7 @@ export default function Notification(props) {
     }
 
     return (
-        <div className={`notification notification--${type}`}>
+        <div className={`notification notification--${type}`} onClick={dismissNotification}>
             <div className="notification__firstcolumn ">
                 <i className="notification__icon">{icon}</i>
             </div>
@@ -39,7 +39,7 @@ export default function Notification(props) {
                 <p className="notification__details">{details}</p>
             </div>
             <div className="notification__lastcolumn">
-                <p onClick={dismissNotification}>X</p>
+                <p>X</p>
             </div>
         </div>
     )

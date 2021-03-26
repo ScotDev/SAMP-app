@@ -1,7 +1,7 @@
 :root {
   --theme-btn-radius: 50px;
-  --theme-primary-color: #ff00ff;
-  /* --theme-primary-color: #9c11ff; */
+  /* --theme-primary-color: #ff00ff; */
+  --theme-primary-color: #fd7513;
   --theme-secondary-color: #a9cec2;
 
   --theme-primary-bg: #242424;
@@ -9,7 +9,8 @@
   /* Unique to notifications */
 
   /* Default */
-  --theme-default: #1f7092;
+  --theme-default: #3a81cd;
+  --theme-default-accent: #fff;
   /* accent is --theme-text */
   /* Error */
   --theme-error: #9e2525;
@@ -22,6 +23,7 @@
   --theme-warning-accent: #fdfac1;
   /* Update */
   /* Used --theme-text */
+  --theme-update: #fd7513;
   --theme-update-accent: #090e24;
 }
 
@@ -55,6 +57,7 @@
   display: flex;
   color: var(--theme-primary-bg);
   animation: fadeIn 0.25s ease-in;
+  cursor: pointer;
 }
 
 .notification:not(:first-child) {
@@ -96,7 +99,7 @@
 }
 
 .notification--default {
-  background-color: var(--theme-text);
+  background-color: var(--theme-default-accent);
   /* border: 2px solid var(--theme-default); */
   border: 2px solid transparent;
   color: var(--theme-default);
@@ -126,7 +129,7 @@
   background-color: var(--theme-update-accent);
   border: 2px solid transparent;
   /* border: 2px solid var(--theme-warning); */
-  color: var(--theme-primary-color);
+  color: var(--theme-update);
 }
 .notification--connection .notification__details {
   color: var(--theme-text);

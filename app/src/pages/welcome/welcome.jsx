@@ -68,7 +68,10 @@ const Welcome = () => {
   const [data, setData] = useState(null);
   const [fetchError, setFetchError] = useState(false)
 
-
+  // Lastupdated might need to be updated every minute?
+  let relativeTime = require('dayjs/plugin/relativeTime')
+  dayjs.extend(relativeTime)
+  // let lastUpdated = dayjs().to(utils.lastUpdated)
 
   const fetchData = async () => {
     dispatch(update())
@@ -87,21 +90,20 @@ const Welcome = () => {
     }
   };
 
-  const alertOnlineStatus = () => { !navigator.onLine && dispatch(create({ type: "connection", msg: "Connection error", details: "No internet connection detected" })) }
+  const checkOnlineStatus = () => { navigator.onLine && dispatch(create({ type: "connection", msg: "Connection error", details: "No internet connection detected" })) }
 
   useEffect(() => {
     fetchData();
-    window.addEventListener('online', alertOnlineStatus)
-    alertOnlineStatus()
+    window.addEventListener('online', checkOnlineStatus)
+    checkOnlineStatus()
   }, [])
-
-  // Lastupdated might need to be updated every minute?
-  let relativeTime = require('dayjs/plugin/relativeTime')
-  dayjs.extend(relativeTime)
-  // let lastUpdated = dayjs().to(utils.lastUpdated)
 
   const toggleView = () => {
     setViewNew(!viewNew)
+  }
+
+  const reloadPage = () => {
+    window.location.reload()
   }
 
   if (data) {
@@ -121,22 +123,20 @@ const Welcome = () => {
   });
 
   const handlePrint = () => {
-
     if (count > 0) {
       dispatch(toggle({ showPrintModal: true }))
     } else {
-      // setShowPrintError(true)
       dispatch(create({ type: "error", msg: "Print error", details: "Please select at least one item to print" }))
-      // setTimeout(() => {
-      //   // setShowPrintError(false)
-      //   dispatch(toggleNotification({ type: null, msg: null, details: null }))
-      // }, 3000);
     }
 
   }
 
   return (<>
     <div className="page">
+      <div className="page__reload_container">
+        <p>Having issues?</p>
+        <button id="reload_btn" onClick={reloadPage}>Reload page</button>
+      </div>
       <header>SAMP</header>
 
       <div className="btn-group">

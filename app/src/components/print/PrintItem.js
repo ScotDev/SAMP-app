@@ -34,7 +34,7 @@ export default function PrintItem(props) {
             <p>{data.SO}</p>
             <p>{data.pages} page(s)</p>
             {/* Below is just dev placeholder */}
-            <p>{data.printed && "Printed: "}  {data.printed && dayjs().to(data.printedTime)} {!data.printedTime && data.addedTime && dayjs().to(data.addedTime)}</p>
+            <p>{data.printed && dayjs().to(data.printedTime)} {!data.printedTime && data.addedTime && dayjs().to(data.addedTime)}</p>
         </div>
     </>)
 }

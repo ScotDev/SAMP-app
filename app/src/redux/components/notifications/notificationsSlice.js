@@ -13,7 +13,7 @@ const notificationsSlice = createSlice({
             });
         },
         remove(state, action) {
-            state.shift()
+            state.pop()
             // const existingItem = state.find(item => item.id === action.payload.id)
             // if (existingItem) {
             //     existingItem.remove

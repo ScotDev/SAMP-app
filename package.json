@@ -21,7 +21,7 @@
   },
   "build": {
     "productName": "SAMP",
-    "appId": "com.yourcompany|electron.yourproductname",
+    "appId": "ScotDev|electron.SAMP",
     "directories": {
       "buildResources": "resources"
     },
