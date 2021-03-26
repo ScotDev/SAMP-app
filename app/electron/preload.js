@@ -12,5 +12,11 @@ const store = new Store();
 contextBridge.exposeInMainWorld("api", {
   i18nextElectronBackend: i18nextBackend.preloadBindings(ipcRenderer),
   store: store.preloadBindings(ipcRenderer, fs),
-  contextMenu: ContextMenu.preloadBindings(ipcRenderer)
+  contextMenu: ContextMenu.preloadBindings(ipcRenderer),
+  userReloadApp: (channel, data) => {
+    let validChannels = ["user-reload-app"];
+    if (validChannels.includes(channel)) {
+      ipcRenderer.send(channel, data)
+    }
+  }
 });

@@ -10,7 +10,6 @@ import { MdSystemUpdateAlt } from 'react-icons/md'
 import { AiOutlinePrinter } from 'react-icons/ai'
 import dayjs from 'dayjs';
 
-
 import PrintList from '../../components/print/PrintList';
 import Modal from '../../components/modal/Modal';
 import Loading from '../../components/loading/Loading';
@@ -56,6 +55,8 @@ const defaultState = [{
 
 const Welcome = () => {
 
+  console.log(window)
+
   const dispatch = useDispatch();
   const print = useSelector((state) => state.print)
   const utils = useSelector((state) => state.utils)
@@ -90,7 +91,7 @@ const Welcome = () => {
     }
   };
 
-  const checkOnlineStatus = () => { navigator.onLine && dispatch(create({ type: "connection", msg: "Connection error", details: "No internet connection detected" })) }
+  const checkOnlineStatus = () => { !navigator.onLine && dispatch(create({ type: "connection", msg: "Connection error", details: "No internet connection detected" })) }
 
   useEffect(() => {
     fetchData();
@@ -103,7 +104,11 @@ const Welcome = () => {
   }
 
   const reloadPage = () => {
-    window.location.reload()
+    // window.location.reload()
+    if (window) {
+      window.api.userReloadApp("user-reload-app", null)
+    }
+
   }
 
   if (data) {
@@ -135,7 +140,7 @@ const Welcome = () => {
     <div className="page">
       <div className="page__reload_container">
         <p>Having issues?</p>
-        <button id="reload_btn" onClick={reloadPage}>Reload page</button>
+        <button id="reload_btn" onClick={reloadPage}>Reload app</button>
       </div>
       <header>SAMP</header>
 

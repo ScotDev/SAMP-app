@@ -5,7 +5,7 @@
   /* --theme-primary-color: #9c11ff; */
   --theme-secondary-color: #a9cec2;
   /* --theme-primary-bg: #242424; */
-  --theme-primary-bg: #2f4858;
+  --theme-primary-bg: #343e48;
   --theme-text: #e5e5e5;
 }
 
@@ -33,19 +33,21 @@
   margin: 0;
 }
 button#reload_btn {
-  border-radius: var(--theme-btn-radius);
-  padding: 0.25rem 0.75rem;
+  /* border-radius: var(--theme-btn-radius); */
+  padding: 0.25rem 0rem;
   outline: 0;
   cursor: pointer;
   font-weight: 500;
   background-color: var(--theme-primary-bg);
-  border: none;
   color: var(--theme-primary-color);
-  border: 1px solid var(--theme-primary-color);
+  border: none;
+  border-bottom: 2px solid var(--theme-primary-color);
 }
 button#reload_btn:hover {
-  color: var(--theme-primary-bg);
-  background-color: var(--theme-primary-color);
+  /* color: var(--theme-primary-bg);
+  background-color: var(--theme-primary-color); */
+  color: var(--theme-secondary-color);
+  border-bottom: 2px solid var(--theme-secondary-color);
 }
 
 header {

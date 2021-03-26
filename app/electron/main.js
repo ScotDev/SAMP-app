@@ -290,3 +290,9 @@ app.on("remote-get-current-window", (event, webContents) => {
 app.on("remote-get-current-web-contents", (event, webContents) => {
   event.preventDefault();
 });
+
+ipcMain.on("user-reload-app", (event, arg) => {
+  console.log("Relaunched")
+  app.relaunch();
+  app.quit();
+})
