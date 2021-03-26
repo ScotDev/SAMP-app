@@ -31,9 +31,9 @@ export default function Notification(props) {
         dispatch(remove({ id }))
     }
 
-    // setTimeout(() => {
-    //     dismissNotification(id)
-    // }, 5000);
+    setTimeout(() => {
+        dismissNotification(id)
+    }, 5000);
 
     return (
         <div className={`notification notification--${type}`} onClick={() => dismissNotification(id)}>
