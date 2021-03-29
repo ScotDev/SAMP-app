@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './notification.css'
 import { BiErrorCircle, BiCheckCircle, BiBoltCircle, BiInfoCircle, BiMinusCircle, BiPauseCircle, BiXCircle, BiCloudDownload, BiWifiOff } from 'react-icons/bi';
 
@@ -31,9 +31,13 @@ export default function Notification(props) {
         dispatch(remove({ id }))
     }
 
-    setTimeout(() => {
-        dismissNotification(id)
-    }, 5000);
+    useEffect(() => {
+        setTimeout(() => {
+            dismissNotification(id)
+        }, 8000);
+    }, [])
+
+
 
     return (
         <div className={`notification notification--${type}`} onClick={() => dismissNotification(id)}>

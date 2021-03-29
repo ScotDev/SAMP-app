@@ -96,8 +96,10 @@ async function createWindow() {
   // Load app
   if (isDev) {
     win.loadURL(selfHost);
+    win.maximize();
   } else {
     win.loadURL(`${Protocol.scheme}://rse/index.html`);
+    win.maximize();
   }
 
   win.webContents.on("did-finish-load", () => {

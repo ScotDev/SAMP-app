@@ -104,7 +104,6 @@ const Welcome = () => {
   }
 
   const reloadPage = () => {
-    // window.location.reload()
     if (window) {
       window.api.userReloadApp("user-reload-app", null)
     }
@@ -158,7 +157,7 @@ const Welcome = () => {
       </div>
 
       {utils.showPrintModal && <Modal />}
-      {utils.isPrinting && (<p>Printing {count} item(s)...</p>)}
+      {/* {utils.isPrinting && (<p>Printing {count} item(s)...</p>)} */}
       <PrintList viewNew={viewNew} />
       <NotificationWrapper />
     </div>
