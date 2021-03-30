@@ -85,6 +85,7 @@ const Welcome = () => {
       dispatch(create({ type: "success", msg: "Download successful", details: `${formattedRes.length} new item(s) received` }))
     } catch (error) {
       setFetchError(true);
+      checkOnlineStatus()
       dispatch(create({ type: "error", msg: "Error fetching items", details: "New items could not be retrieved" }))
       dispatch(update())
       console.log("Error loading data from API: ", error)
