@@ -12,7 +12,7 @@ const notificationsSlice = createSlice({
                 details: action.payload.details
             });
         },
-        remove(state, action) {
+        removeOne(state, action) {
             // state.pop()
             return state.filter(item => item.id !== action.payload.id)
         },
@@ -20,9 +20,12 @@ const notificationsSlice = createSlice({
             // state.pop()
             return state = { id: 1, type: "default", msg: "Default title", details: "Default details" }
         },
+        removeFirst(state) {
+            state.pop()
+        },
     }
 })
 
-export const { create, remove, removeAll } = notificationsSlice.actions;
+export const { create, removeOne, removeAll, removeFirst } = notificationsSlice.actions;
 
 export default notificationsSlice.reducer

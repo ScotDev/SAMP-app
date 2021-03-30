@@ -4,28 +4,32 @@ import './notification.css'
 
 
 import { useSelector, useDispatch } from "react-redux";
-import { remove, removeAll } from '../../redux/components/notifications/notificationsSlice';
+import { removeAll, removeFirst } from '../../redux/components/notifications/notificationsSlice';
 
 export default function NotificationWrapper() {
-    // const [showSelf, setShowSelf] = useState(false)
     const dispatch = useDispatch();
     const notifications = useSelector((state) => state.notifications)
     // const notifications = notificationsState.notifications;
     const [content, setContent] = useState({});
-    // const [showSelf, setShowSelf] = useState(false);
     // console.log(notifications)
 
 
     useEffect(() => {
+
         if (notifications.length > 0) {
             setContent(notifications);
-            // setShowSelf(true);
             setTimeout(() => {
                 setContent({})
-
+                dispatch(removeFirst())
             }, 5000);
         }
+
+        // if (content.length > 10) {
+        //     dispatch(removeAll());
+        // }
+
     }, [notifications])
+
 
     let items;
 
@@ -37,10 +41,8 @@ export default function NotificationWrapper() {
         })
     }
 
-
-    return (<>  <div className="notification_container">
+    return (<div className="notification_container">
         {items}
-    </div>
-    </>)
+    </div>)
 
 }

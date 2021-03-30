@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, } from 'react';
 import './notification.css'
 import { BiErrorCircle, BiCheckCircle, BiBoltCircle, BiInfoCircle, BiMinusCircle, BiPauseCircle, BiXCircle, BiCloudDownload, BiWifiOff } from 'react-icons/bi';
 
 import { useDispatch } from "react-redux";
-import { remove } from '../../redux/components/notifications/notificationsSlice';
+import { removeOne } from '../../redux/components/notifications/notificationsSlice';
 
 export default function Notification(props) {
     console.log("Notification props: ", props.data)
+
     const { id, type, msg, details } = props.data;
     const dispatch = useDispatch();
 
@@ -28,14 +29,14 @@ export default function Notification(props) {
 
     const dismissNotification = (id) => {
         console.log(id)
-        dispatch(remove({ id }))
+        dispatch(removeOne({ id }))
     }
 
-    useEffect(() => {
-        setTimeout(() => {
-            dismissNotification(id)
-        }, 8000);
-    }, [])
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         dismissNotification(id)
+    //     }, 8000);
+    // }, [])
 
 
 
