@@ -2,7 +2,8 @@
   --theme-btn-radius: 50px;
   /* --theme-primary-color: #ff00ff; */
   --theme-primary-color: #fd7513;
-  --theme-secondary-color: #a9cec2;
+  /* --theme-secondary-color: #a9cec2; */
+  --theme-secondary-color: #e5e5e5;
 
   --theme-primary-bg: #242424;
   --theme-text: #e5e5e5;
@@ -13,11 +14,11 @@
   --theme-default-accent: #fff;
   /* accent is --theme-text */
   /* Error */
-  --theme-error: #9e2525;
+  --theme-error: #b92a2a;
   --theme-error-accent: #fdf1f1;
   /* Success */
-  --theme-success: #346e60;
-  --theme-success-accent: #f1faf7;
+  --theme-success: #42d4b2;
+  --theme-success-accent: #090e24;
   /* Warning */
   --theme-warning: #a19925;
   --theme-warning-accent: #fdfac1;

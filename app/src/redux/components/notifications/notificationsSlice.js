@@ -21,7 +21,7 @@ const notificationsSlice = createSlice({
             return state = { id: 1, type: "default", msg: "Default title", details: "Default details" }
         },
         removeFirst(state) {
-            state.pop()
+            state.shift()
         },
     }
 })

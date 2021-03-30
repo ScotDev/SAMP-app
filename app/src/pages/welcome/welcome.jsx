@@ -82,7 +82,7 @@ const Welcome = () => {
       const formattedRes = await res.json();
       setData(formattedRes)
       dispatch(update())
-      dispatch(create({ type: "success", msg: "Fetch successful", details: `${formattedRes.length} new item(s) received` }))
+      dispatch(create({ type: "success", msg: "Download successful", details: `${formattedRes.length} new item(s) received` }))
     } catch (error) {
       setFetchError(true);
       dispatch(create({ type: "error", msg: "Error fetching items", details: "New items could not be retrieved" }))
@@ -146,7 +146,7 @@ const Welcome = () => {
       <div className="btn-group">
         <button id="update" disabled={utils.isUpdating || utils.isPrinting}
           onClick={fetchData}
-        >Update <MdSystemUpdateAlt /></button>
+        >Sync <MdSystemUpdateAlt /></button>
         <button id="print" disabled={utils.isUpdating || utils.isPrinting} onClick={handlePrint}>Print <AiOutlinePrinter /></button>
       </div>
       <p id="last-updated-text">Last updated: {dayjs().to(utils.lastUpdated)}</p>
